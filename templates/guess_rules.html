@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="game_rules" class="ok">Draw something using the arrow keys and let your friends guess! Give them a point if
+    they win!</div>
+
+<a id="bc">Show Word</a>
+<!-- <button type="button" id="bc">Show Word</button> -->
+<div id="wordtoguess" style="display: none;" >X</div>
+
+<a class="add_animation" onclick="window.location.href='/runpictionary'">Play!</a>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const array = ['hat', 'house', 'rat', 'cat', 'leaf', 'clock', 'dog'];
+        const word = array[Math.floor(Math.random() * array.length)];
+        console.log(word)
+
+        const button = document.getElementById("bc")
+        const wordtoguess = document.getElementById('wordtoguess')
+console.log(wordtoguess.innerText)
+console.log(wordtoguess.style.display)
+        button.addEventListener('click', () => {
+            if (wordtoguess.style.display === "none") {
+                wordtoguess.innerText = word;
+                wordtoguess.style.display = 'inline';
+                button.textContent = 'Hide Word';
+                console.log('entered if')
+            } else {
+                wordtoguess.style.display = 'none';
+                button.textContent = 'Show Word'
+                console.log('entersed else')
+            }
+        });
+
+    });
+</script>
+
+{% endblock body %}
+
+<!-- {% block scripts %} -->
+
+<!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+
+<!-- give the something using at random -->
+<!-- timer -->
+
+
+<!-- {% endblock %} -->
