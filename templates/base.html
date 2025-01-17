@@ -14,24 +14,62 @@
 </head>
 
 <body>
+
+    <audio id="audio-player" >
+        <source src="{{ url_for('static', filename='click.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <div class="add_animation"  >
         <a href="/" id="heading">GameHub</a>
+
     </div>
     <div id="game_content">
         <div id="links_area">
-            <a class="add_animation" href="/pingpong">Ping Pong</a>
-            <a class="add_animation" href="/snake">Snake</a>
-            <a class="add_animation" href="/crossgame">Turtle Cross</a>
-            <a class="add_animation" href="/pictionary">Pictionary</a>
+            <a class="add_animation shared-button" href="/pingpong">Ping Pong</a>
+            <a class="add_animation shared-button" href="/snake">Snake</a>
+            <a class="add_animation shared-button" href="/crossgame">Turtle Cross</a>
+            <a class="add_animation shared-button" href="/pictionary">Pictionary</a>
         </div>
         <div id="game_rules_area">
             {% block body %}
             {% endblock body %}
         </div>
     </div>
-    {% block scripts %}
+
+    <!-- {% block scripts %} -->
     <!-- Default or common scripts (optional) -->
-    {% endblock %}
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // document.querySelectorAll('#musicbtn').forEach(button => {
+            //     button.addEventListener('click', () => {
+            //         console.log('Button clicked:', button.textContent);
+            //         // Play audio or add functionality
+
+            //         const audio = document.getElementById('bgmus');
+            //         audio.play();
+            //     });
+            // });
+
+
+            document.querySelectorAll('.shared-button').forEach(link => {
+            link.addEventListener('click', (event) => {
+
+                const audio = document.getElementById('audio-player');
+                audio.play();
+                
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 100); // Adjust delay as needed
+
+                event.preventDefault();
+            });
+        });
+        });
+    </script>
+    <!-- {% endblock %} -->
 </body>
 
 </html>
